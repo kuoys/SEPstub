@@ -1,0 +1,63 @@
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class YourRocketControllerTest {
+	static RocketSystem mock;
+	YourRocketController cus;
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		mock=new MockRocketSystem();
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		
+	}
+
+	@Test
+	public void test() {
+		
+		cus=new YourRocketController(mock);
+		String control_string="IGNITE 0 1000 AT 0\n"+"IGNITE 1 500 AT 2\n"+"SHUTOFF 0 AT 5\n"+"SHUTOFF 1 AT 6\n";
+		try {
+			cus.fireUp(control_string);
+		} catch (ERROR_STRINGFORMAT e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+	}
+
+}
+
+ class MockRocketSystem implements RocketSystem{
+
+	@Override
+	public void ignite(int nozzle, int pressure) {
+		// TODO Auto-generated method stub
+		System.out.println("fire!! "+nozzle+":"+pressure);
+	}
+
+	@Override
+	public void shutoff(int nozzle) {
+		// TODO Auto-generated method stub
+		System.out.println("shutdown! "+nozzle);
+	}
+	
+	
+}

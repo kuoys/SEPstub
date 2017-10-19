@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="YourRocketControllerTest" project="YourRocketController" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="YourRocketControllerTest" time="5.998">
+    <testcase name="test" classname="YourRocketControllerTest" time="5.997"/>
+    <testcase name="test2" classname="YourRocketControllerTest" time="0.001"/>
+  </testsuite>
+</testrun>

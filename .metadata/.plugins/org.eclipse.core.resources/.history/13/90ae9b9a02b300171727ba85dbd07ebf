@@ -1,0 +1,64 @@
+
+public class YourRocketController {
+		private RocketSystem  rocket ;
+		public YourRocketController(){
+			
+			
+		}
+		public YourRocketController(RocketSystem rocket ){
+			this.rocket=rocket;			
+			
+		}
+		private boolean isValid(String[] control){
+			String  ignite="IGNITE %d %d AT %d ";
+			String  shutoff="   SHUTOFF %d AT %d ";
+			for ( String  ins : control){
+							try{
+								String []field=ins.split(" ");
+								if (field[0].equals("SHUTOFF")){
+										
+								}									
+								else if(field[0].equals("IGNITE")){
+									
+								}
+								else{
+									
+									
+								}
+								
+							}
+							catch(Exception e){
+									return false;
+							}
+
+				
+			}
+			return true;
+		}
+	
+		public void fireUp(String control_string)  throws ERROR_STRINGFORMAT {
+				
+			String[] ins=control_string.split("\n");
+			
+			
+			
+			
+		
+		
+		if(!isValid(ins))
+				throw new ERROR_STRINGFORMAT();
+		
+		
+		}
+
+}
+
+
+static class ERROR_STRINGFORMAT extends Exception
+{
+  public ERROR_STRINGFORMAT()
+  {
+    super("ERROR_STRINGFORMAT" );
+  }
+
+}

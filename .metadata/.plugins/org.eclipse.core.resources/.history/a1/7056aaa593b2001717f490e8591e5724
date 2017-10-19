@@ -1,0 +1,29 @@
+
+public class YourRocketController {
+	
+	
+	
+	
+		public void fireUp(string control_string)  throws ERROR_STRINGFORMAT {
+				
+		
+			
+		
+		
+		if(false )
+				throw new ERROR_STRINGFORMAT();
+		
+		
+		}
+
+}
+
+
+class ERROR_STRINGFORMAT extends Exception
+{
+  public ERROR_STRINGFORMAT()
+  {
+    super("ERROR_STRINGFORMAT" );
+  }
+
+}

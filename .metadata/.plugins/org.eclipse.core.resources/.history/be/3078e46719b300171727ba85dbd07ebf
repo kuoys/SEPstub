@@ -1,0 +1,16 @@
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String test=" IGNITE 0 1000 AT 0\n IGNITE 1 500 AT 2\n SHUTOFF 0 AT 5\n SHUTOFF 1 AT 6";
+		String[] ins=test.split("\n");
+		for (String temp:ins){
+			System.out.println(temp.matches("IGNITE [0-9]+ [0-9]+ AT [0-9]+"));
+			System.out.println(temp.matches("SHUTOFF [0-9]+ AT [0-9]+"));
+		}
+	
+	
+	}
+
+}

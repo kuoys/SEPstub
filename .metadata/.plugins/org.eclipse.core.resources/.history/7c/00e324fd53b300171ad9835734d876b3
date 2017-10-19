@@ -1,0 +1,103 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class YourRocketController {
+	private RocketSystem  rocket ;
+	public YourRocketController(){
+
+	}
+	public YourRocketController(RocketSystem rocket ){
+		this.rocket=rocket;			
+
+	}
+	private boolean isValid(String[] control){
+
+		for ( String  ins : control){
+			if(!ins.matches("IGNITE [0-3] [0-9]+ AT [0-9]+") || !ins.matches("SHUTOFF [0-3] AT [0-9]+"));
+			return false;
+		}
+		return true;
+	}
+
+	public void fireUp(String control_string)  throws ERROR_STRINGFORMAT {
+		String[] ins=control_string.split("\n");
+		//check if control_string is formatted correctly
+		if(!isValid(ins))
+			throw new ERROR_STRINGFORMAT();
+		//sort the instruction by time
+		Arrays.sort(ins,new Comparator<String>(){
+			@Override
+			public int compare(String s1, String s2) {
+				String[] c1=s1.split(" ");
+				String [] c2=s2.split(" ");
+				return Integer.parseInt(c1[c1.length-1])-Integer.parseInt(c2[c2.length-1]);
+			}
+
+		});
+		// store instruction as Object  
+		Instruction[] instruction = new Instruction[ins.length];
+		for(int i=0,time_pre=0;i<ins.length;i++){
+			String[] field=ins[i].split(" ");
+			if(field[0].equals("IGNITE"))
+				instruction[i]=new Instruction(field[0],Integer.parseInt(field[1]),Integer.parseInt(field[2]),Integer.parseInt(field[4]));
+			else
+				instruction[i]=new Instruction(field[0],Integer.parseInt(field[1]),Integer.parseInt(field[3]));
+			//calculate idle  time between Instructions
+			instruction[i].setTimeRel(instruction[i].time_abs-time_pre);
+			time_pre=instruction[i].time_abs;	
+		}
+		//execute the  instruction in certain time
+		for(int  i=0;i<ins.length;i++){
+			//sleep until the right time to call function
+			for(int j=0;j<instruction[i].time_rel;j++){
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			if(instruction[i].action.equals("IGNITE"))
+				rocket.ignite(instruction[i].nozzle, instruction[i].pressure);
+			else 
+				rocket.shutoff(instruction[i].nozzle);
+		}
+
+	}
+
+}
+
+
+class ERROR_STRINGFORMAT  extends Exception
+{
+	public ERROR_STRINGFORMAT()
+	{
+		super("ERROR_STRINGFORMAT" );
+	}
+
+}
+class Instruction {
+	public int time_rel;
+	public String action;
+	public int nozzle;
+	public int pressure;
+	public int time_abs;
+	Instruction(String action,int nozzle,int pressure,int time_abs){
+		this.action=action;
+		this.nozzle=nozzle;
+		this.pressure=pressure;
+		this.time_abs=time_abs;
+
+	}
+	Instruction(String action,int nozzle,int time_abs){
+		this.action=action;
+		this.nozzle=nozzle;
+		this.time_abs=time_abs;
+	}
+	public void setTimeRel(int time){
+		this.time_rel=time;	
+
+	}
+
+}

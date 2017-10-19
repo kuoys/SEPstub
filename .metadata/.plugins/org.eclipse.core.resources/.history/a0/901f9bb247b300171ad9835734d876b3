@@ -1,0 +1,72 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class YourRocketController {
+	private RocketSystem  rocket ;
+	public YourRocketController(){
+
+
+	}
+	public YourRocketController(RocketSystem rocket ){
+		this.rocket=rocket;			
+
+	}
+	private boolean isValid(String[] control){
+
+		for ( String  ins : control){
+			if(!ins.matches("IGNITE [0-3] [0-9]+ AT [0-9]+") || !ins.matches("SHUTOFF [0-3] AT [0-9]+"));
+			return false;
+		}
+		return true;
+	}
+
+	public void fireUp(String control_string)  throws ERROR_STRINGFORMAT {
+		String[] ins=control_string.split("\n");
+		//check if control_string is formatted correctly
+		if(!isValid(ins))
+			throw new ERROR_STRINGFORMAT();
+		//sort the instruction by time
+		Arrays.sort(ins,new Comparator<String>(){
+			@Override
+			public int compare(String s1, String s2) {
+				String[] c1=s1.split(" ");
+				String [] c2=s2.split(" ");
+				return Integer.parseInt(c1[c1.length-1])-Integer.parseInt(c2[c2.length-1]);
+			}
+
+		});
+		Integer[] wait;
+		int  time_pre=0;
+		//calculate the time between instructions and Parameter 
+		for(int i=0;i<ins.length;i++){
+				
+			wait[i]=
+			
+						
+		}
+		//execute the  instruction in certain time
+	
+
+
+	}
+
+}
+
+
+static class ERROR_STRINGFORMAT extends Exception
+{
+	public ERROR_STRINGFORMAT()
+	{
+		super("ERROR_STRINGFORMAT" );
+	}
+
+}
+public class Instruction {
+		private int time_rel;
+		private int action;
+		private int nozzle;
+		private int pressure;
+		private int time_abs;
+	
+	
+}

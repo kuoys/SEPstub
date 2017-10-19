@@ -1,0 +1,36 @@
+
+public class YourRocketController {
+		private RocketSystem  rocket ;
+		public YourRocketController(){
+			
+			
+		}
+		public YourRocketController(RocketSystem rocket ){
+			this.rocket=rocket;			
+			
+		}
+	
+	
+		public void fireUp(String control_string)  throws ERROR_STRINGFORMAT {
+				
+			
+			
+		
+		
+		if(true)
+				throw new ERROR_STRINGFORMAT();
+		
+		
+		}
+
+}
+
+
+class ERROR_STRINGFORMAT extends Exception
+{
+  public ERROR_STRINGFORMAT()
+  {
+    super("ERROR_STRINGFORMAT" );
+  }
+
+}

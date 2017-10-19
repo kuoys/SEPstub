@@ -1,0 +1,51 @@
+
+public class YourRocketController {
+		private RocketSystem  rocket ;
+		public YourRocketController(){
+			
+			
+		}
+		public YourRocketController(RocketSystem rocket ){
+			this.rocket=rocket;			
+			
+		}
+		private boolean isValid(String[] control){
+		    
+		for ( String  ins : control){
+					if(!ins.matches("IGNITE [0-9]+ [0-9]+ AT [0-9]+") || !ins.matches("SHUTOFF [0-9]+ AT [0-9]+"));
+						return false;
+			}
+			return true;
+		}
+	
+		public void fireUp(String control_string)  throws ERROR_STRINGFORMAT {
+			String[] ins=control_string.split("\n");
+			//check if control_string is formatted correctly
+			if(!isValid(ins))
+					throw new ERROR_STRINGFORMAT();
+			//sort the instruction by time
+			
+			
+			
+	
+			
+			
+			
+			
+		
+		
+		
+		
+		}
+
+}
+
+
+static class ERROR_STRINGFORMAT extends Exception
+{
+  public ERROR_STRINGFORMAT()
+  {
+    super("ERROR_STRINGFORMAT" );
+  }
+
+}

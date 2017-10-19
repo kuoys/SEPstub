@@ -1,0 +1,10 @@
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String test="IGNITE 0 1000 AT 0";
+		System.out.println(test.matches("IGNITE [0-9]+ [0-9]+ AT [0-9]+"));
+	}
+
+}
